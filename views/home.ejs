@@ -1,0 +1,16 @@
+<%-include("partials/header");-%>
+    <div class="form-container">
+        <h1>Meme Stream</h1>
+        <form action="/" method="post">
+        <label for="memeOwner">Meme Owner</label> <br>
+        <input type="text" id="memeOwner" name="memeOwner" placeholder="Enter your full name" size="70" required autofocus autocomplete="off"> <br> <br>
+        <label for="caption">Caption</label> <br>
+        <input type="text" id="caption" name="memeCaption" placeholder="Be creative with caption" size="70" required autocomplete="off"> <br> <br>
+        <label for="url">Meme URL</label> <br>
+        <input type="url" id="url" name="memeUrl" placeholder="Enter the url of your meme here" size="70" required autocomplete="off"> <br> <br>
+        <button class="btn btn-sm btn-primary" type="submit" name="submitBtn">Submit Meme</button>
+        </form>
+    </div>
+    
+
+<%-include("partials/footer");-%>
