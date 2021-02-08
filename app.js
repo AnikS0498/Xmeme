@@ -5,6 +5,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Meme = require("./models/MemePost");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 
 const PORT = process.env.PORT || 3000;
@@ -23,14 +25,21 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Statement to enable usage of static files(css) in express
 app.use(express.static("public"));
 
+app.use(session({
+    secret: "secret",
+    cookie: { maxAge: 60000 },
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(flash());
 //Routes
 const memeFeed = require("./routes/memefeed");
 
-app.use("/memefeed", memeFeed);
+app.use("/memes", memeFeed);
 
 app.get("/", function(req, res){
     console.log("I am in home route");
-    res.render("home"); 
+    res.render("home", { message: req.flash("message") }); 
 });
 
 
@@ -49,6 +58,7 @@ app.post("/", async function(req, res){
         res.json({ message: err });
         console.log(err);
     }
+    req.flash("message", "Submitted Successfully, Check MemeFeed from top right corner");
     res.redirect("/");
 });
 

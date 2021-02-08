@@ -7,7 +7,7 @@ router.get("/", (req, res)=>{
     console.log("I am in memefeed get route");
     Meme.find({}, (err, memes)=>{
         if(!err){
-            res.render("memefeed",{
+            res.render("memes",{
                 memes: memes
             });
         }
