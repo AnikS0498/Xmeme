@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 //meme schema
 const MemeSchema = mongoose.Schema({
+    id:{
+        type: Number,
+        required: true
+    },
     memeOwner: {
         type: String,
         required: true
